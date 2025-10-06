@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Pedidos - Nikkei Roll</title>
+    <link rel="stylesheet" href="../assets/css/grid-style.css">
+    <style>
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #ccc; padding: 0.75rem; text-align: left; }
+        th { background-color: #f8f9fa; }
+        .new-order { background-color: #fffbe6; } /* Fila destacada  */
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1 class="text-center mt-2">Panel de Gestion De Pedidos</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>N° Orden</th>
+                    <th>Cliente</th>
+                    <th>Hora</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="new-order">
+                    <td>#12345</td>
+                    <td>Ana C.</td>
+                    <td>14:30</td>
+                    <td>$20.480</td>
+                    <td>Nuevo</td>
+                    <td>
+                        <button title="Actualizar Estado">✏️</button>
+                        <button title="Imprimir Orden">🖨️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#12344</td>
+                    <td>Pedro P.</td>
+                    <td>14:25</td>
+                    <td>$15.800</td>
+                    <td>En preparacion</td>
+                    <td>
+                        <button title="Actualizar Estado">✏️</button>
+                        <button title="Imprimir Orden">🖨️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#12343</td>
+                    <td>Juan A.</td>
+                    <td>14:20</td>
+                    <td>$20.480</td>
+                    <td>Entregado</td>
+                    <td>
+                        <button title="Actualizar Estado">✏️</button>
+                        <button title="Imprimir Orden">🖨️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        </main>
+</body>
+</html>
