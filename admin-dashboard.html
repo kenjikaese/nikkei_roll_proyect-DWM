@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ventasEl = document.getElementById('ventas-hoy');
+            const pedidosEl = document.getElementById('pedidos-hoy');
+            const promedioEl = document.getElementById('ticket-promedio');
+
+            function updateMetrics() {
+                let currentSales = parseFloat(ventasEl.textContent.replace('$', '').replace(/\./g, ''));
+                let currentOrders = parseInt(pedidosEl.textContent);
+
+                currentSales += Math.floor(Math.random() * 5000) + 8000;
+                currentOrders += 1;
+                let newAverage = currentSales / currentOrders;
+
+                ventasEl.textContent = '$' + currentSales.toLocaleString('es-CL');
+                pedidosEl.textContent = currentOrders;
+                promedioEl.textContent = '$' + newAverage.toLocaleString('es-CL', {maximumFractionDigits: 0});
+            }
+
+            setInterval(updateMetrics, 5000); 
+        });
+    </script>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h2>Nikkei Roll</h2>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="active">Dashboard</a>
+                <a href="admin-pedidos.html">Pedidos</a>
+                <a href="admin-productos.html">Productos</a>
+                <a href="admin-clientes.html">Clientes</a>
+                <a href="admin-reportes.html">Reportes</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <h1>Dashboard</h1>
+            <p>Resumen en tiempo real del negocio.</p>
+
+            <div class="row mt-2">
+                <div class="col-md-4">
+                    <div class="widget-card">
+                        <h3>Ventas de hoy</h3>
+                        <p id="ventas-hoy" class="metric">$125.500</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget-card">
+                        <h3>N° de Pedidos de hoy</h3>
+                        <p id="pedidos-hoy" class="metric">12</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget-card">
+                        <h3>Pedido promedio</h3>
+                        <p id="ticket-promedio" class="metric">$10.458</p>
+                    </div>
+                </div>
+            </div>
+             <div class="row mt-2">
+                <div class="col-md-12">
+                     <div class="widget-card">
+                        <h3>Productos más vendidos (Hoy)</h3>
+                        <p>...</p>
+                    </div>
+                </div>
+             </div>
+        </main>
+    </div>
+</body>
+</html>

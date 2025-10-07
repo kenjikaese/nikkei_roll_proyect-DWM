@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reportForm = document.getElementById('report-form');
+            const reportArea = document.getElementById('report-area');
+            const exportBtn = document.getElementById('export-btn');
+
+            if (reportForm) {
+                reportForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const startDate = document.getElementById('start-date').value;
+                    const endDate = document.getElementById('end-date').value;
+
+                    if (!startDate || !endDate) {
+                        alert('Por favor, selecciona una fecha de inicio y una de fin.');
+                        return;
+                    }
+                    
+                    alert('Generando reporte para el período seleccionado...');
+                    reportArea.style.display = 'block';
+                });
+            }
+
+            if (exportBtn) {
+                exportBtn.addEventListener('click', function() {
+                    alert('Simulando descarga del reporte en formato PDF...');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h2>Nikkei Roll</h2>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-pedidos.html">Pedidos</a>
+                <a href="admin-productos.html">Productos</a>
+                <a href="admin-clientes.html">Clientes</a>
+                <a href="admin-reportes.html" class="active">Reportes</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <h1>Generador de Reportes de Venta</h1>
+
+            <div class="form-container" style="max-width: none; margin: 2rem 0;">
+                <form id="report-form">
+                    <div class="row" style="align-items: center;">
+                        <div class="col-md-4">
+                            <label for="start-date">Fecha de Inicio:</label>
+                            <input type="date" id="start-date" name="start-date" style="width:100%; padding: 0.5rem;">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="end-date">Fecha Final:</label>
+                            <input type="date" id="end-date" name="end-date" style="width:100%; padding: 0.5rem;">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary" style="margin-top: 1.5rem;">Generar Reporte</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div id="report-area" style="display: none;">
+                <hr>
+                <div class="row" style="align-items: center;">
+                    <div class="col-md-9">
+                        <h2>Reporte Generado</h2>
+                    </div>
+                    <div class="col-md-3" style="text-align: right;">
+                        <button id="export-btn" class="btn btn-success">Exportar a PDF</button>
+                    </div>
+                </div>
+                <div class="widget-card mt-2">
+                    Contenido del reporte (totales, gráficos, productos más vendidos, etc.) iría aquí.
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.product-card-container');
+            const categoryLinks = document.querySelectorAll('.category-filter');
+            const searchInput = document.getElementById('search-input');
+            const noResultsMessage = document.getElementById('no-results');
+
+            function updateVisibleProducts() {
+                let hasVisibleProducts = false;
+                productCards.forEach(card => {
+                    if (card.style.display !== 'none') {
+                        hasVisibleProducts = true;
+                    }
+                });
+                noResultsMessage.style.display = hasVisibleProducts ? 'none' : 'block';
+            }
+
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const category = this.dataset.category;
+
+                    productCards.forEach(card => {
+                        if (category === 'todos' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    updateVisibleProducts();
+                });
+            });
+
+            if(searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+
+                    productCards.forEach(card => {
+                        const productName = card.querySelector('h3').textContent.toLowerCase();
+                        if (productName.includes(searchTerm)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    updateVisibleProducts();
+                });
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <h1 class="text-center" style="margin-bottom: 2rem;">Nuestro Menú</h1>
+        
+        <div class="row">
+            <aside class="col-md-3">
+                <h4>Categorías</h4>
+                <ul class="category-list mt-1">
+                    <li><a href="#" class="category-filter active" data-category="todos">Todos</a></li>
+                    <li><a href="#" class="category-filter" data-category="roll">Rolls</a></li>
+                    <li><a href="#" class="category-filter" data-category="bebida">Bebidas</a></li>
+                    <li><a href="#" class="category-filter" data-category="postre">Postres</a></li>
+                </ul>
+            </aside>
+
+            <section class="col-md-9">
+                <input type="search" id="search-input" class="search-bar" placeholder="Buscar producto en el menú...">
+
+                <div class="row">
+                    <div class="col-md-4 product-card-container" data-category="roll">
+                        <a href="producto-detalle.html" class="product-card-link">
+                            <div class="product-card">
+                                <img src="assets/images/acebichado-roll.jpg" alt="Foto de un roll acebichado" class="product-img">
+                                <h3>Acebichado Roll</h3>
+                                <p>$8.990</p>
+                            </div>
+                        </a>
+                    </div>
+                     <div class="col-md-4 product-card-container" data-category="roll">
+                        <a href="producto-detalle.html" class="product-card-link">
+                            <div class="product-card">
+                                <img src="assets/images/sake-roll.jpg" alt="Foto de un roll de salmón (sake)" class="product-img">
+                                <h3>Sake Roll</h3>
+                                <p>$7.990</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 product-card-container" data-category="bebida">
+                        <a href="producto-detalle.html" class="product-card-link">
+                            <div class="product-card">
+                                <img src="assets/images/inca-kola.png" alt="Botella de Inca Kola" class="product-img">
+                                <h3>Inca Kola</h3>
+                                <p>$2.500</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 product-card-container" data-category="bebida">
+                        <a href="producto-detalle.html" class="product-card-link">
+                            <div class="product-card">
+                                <img src="assets/images/asahi.jpg" alt="Botella de Cerveza Asahi" class="product-img">
+                                <h3>Cerveza Asahi</h3>
+                                <p>$3.500</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div id="no-results" class="text-center" style="display: none; margin-top: 2rem;">
+                    <h4>No se encontraron productos</h4>
+                    <p>Intenta con otra búsqueda o filtro.</p>
+                </div>
+
+                <nav class="pagination mt-2 text-center">
+                    <a href="#">&lt;</a>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&gt;</a>
+                </nav>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nikkei Roll. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. "Atrapamos" los elementos del formulario que necesitamos
+            const loginForm = document.querySelector('form');
+            const emailInput = document.querySelector('#email');
+            const passwordInput = document.querySelector('#password');
+
+            // 2. Escuchamos el evento "submit" del formulario
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(event) {
+                    // Prevenimos que la página se recargue
+                    event.preventDefault();
+
+                    // 3. Obtenemos los valores que el usuario escribió
+                    const email = emailInput.value;
+                    const password = passwordInput.value;
+
+                    // 4. Simulamos la lógica de los escenarios Gherkin
+                    if (email === 'ana@example.com' && password === 'Clave2025') {
+                        alert('¡Login exitoso! Redirigiendo al perfil...');
+                        // En un proyecto real, aquí redirigirías a otra página:
+                        // window.location.href = 'perfil.html';
+                    } else if (email === 'nuevo@example.com') {
+                        alert('Tu cuenta necesita ser validada. Revisa tu correo.');
+                    } 
+                    // Aquí podrías añadir la lógica de los 5 intentos fallidos
+                    else {
+                        alert('Email o contraseña incorrectos.');
+                    }
+                });
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div class="form-container">
+            <h1 class="text-center" style="margin-bottom: 1.5rem;">Iniciar Sesión</h1>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Escribe tu email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" placeholder="Escribe tu contraseña">
+                </div>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+                <div class="text-center mt-1">
+                    <a href="recuperar-clave.html">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div class="text-center mt-2" style="border-top: 1px solid #444; padding-top: 1.5rem;">
+                    <p>¿No tienes cuenta?</p>
+                    <a href="registro.html" class="btn btn-success mt-1">Registrarse</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nikkei Roll. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

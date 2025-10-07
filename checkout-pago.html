@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen y Pago - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const payBtn = document.getElementById('pay-btn');
+
+            if (payBtn) {
+                payBtn.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    
+                    alert('Serás redirigido a la pasarela de pago externa para finalizar tu compra.');
+
+                    if (Math.random() > 0.2) { // 80% de probabilidad de éxito
+                        alert('¡Pago exitoso! Volviendo a Nikkei Roll...');
+                        window.location.href = 'checkout-confirmacion.html';
+                    } else { // 20% de probabilidad de fallo
+                        alert('Hubo un error con el pago. Por favor, intenta de nuevo.');
+                    }
+                });
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        
+        <div class="form-container">
+            <h1 class="text-center" style="margin-bottom: 2rem;">Resumen Final de tu Pedido</h1>
+
+            <div>
+                <h2>Detalles de Entrega</h2>
+                <div style="border: 1px solid #555; padding: 1rem; border-radius: 5px; background: #333; margin-top: 1rem;">
+                    <p><strong>Método:</strong> Despacho a Domicilio</p>
+                    <p><strong>Dirección:</strong> Av. Elden ring 490, Maipú</p>
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <h2>Resumen de Productos</h2>
+                <div style="border: 1px solid #555; padding: 1rem; border-radius: 5px; background: #333; margin-top: 1rem;">
+                    <p>2 x Acebichado Roll</p>
+                    <p>1 x Inca Kola</p>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 2rem; font-size: 1.5rem;">
+                <strong>Total a Pagar: $20.480</strong>
+            </div>
+            
+            <div class="mt-2" style="border-top: 1px solid #444; padding-top: 2rem;">
+                 <a href="#" id="pay-btn" class="btn btn-primary" style="font-size: 1.2rem;">Ir a Pagar</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nikkei Roll. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

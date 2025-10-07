@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Producto - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            const availabilityStatus = document.getElementById('availability-status');
+
+            if (availabilityStatus && availabilityStatus.textContent.trim() === 'Agotado') {
+                addToCartBtn.disabled = true;
+                addToCartBtn.style.opacity = '0.5';
+                addToCartBtn.style.cursor = 'not-allowed';
+            }
+
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', function() {
+                    if (!this.disabled) {
+                        alert('¡Producto añadido al carrito!');
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div class="row" style="align-items: center;">
+            <div class="col-md-6">
+                <img src="assets/images/acebichado-roll.jpg" alt="Foto de un roll acebichado" style="width: 100%; border-radius: 8px;">
+            </div>
+            <div class="col-md-6">
+                <h1>Acebichado Roll</h1>
+                <p style="font-size: 1.2rem; color: var(--primary-color); margin: 1rem 0;">$8.990</p>
+                <p>Delicioso roll relleno de camarón furai y palta, envuelto en un fino corte de pescado blanco y bañado en una vibrante leche de tigre con toques de cilantro.</p>
+                <p class="mt-1"><strong>Disponibilidad:</strong> <span id="availability-status">Disponible</span></p>
+                
+                <button id="add-to-cart-btn" class="btn btn-primary mt-2" style="width: auto;">Añadir al Carrito</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nikkei Roll. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

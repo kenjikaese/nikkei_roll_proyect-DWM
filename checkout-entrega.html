@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Entrega - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const retiroBtn = document.getElementById('retiro-btn');
+            const deliveryBtn = document.getElementById('delivery-btn');
+
+            if (retiroBtn) {
+                retiroBtn.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    alert('Has seleccionado Retiro en Local. Serás redirigido al resumen del pago.');
+                    window.location.href = 'checkout-pago.html';
+                });
+            }
+
+            if (deliveryBtn) {
+                deliveryBtn.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    alert('Has seleccionado Despacho a Domicilio. Serás redirigido para confirmar tu dirección.');
+                    window.location.href = 'checkout-direccion.html';
+                });
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content text-center">
+        
+        <h1>¿Cómo quieres recibir tu pedido?</h1>
+        
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <a href="#" id="retiro-btn" class="btn" style="display:block; background-color: var(--light-gray-color); padding: 2rem;">
+                    <h2 style="margin-bottom: 1rem;">Retiro en Local</h2>
+                    <p>Retira tu pedido sin costo en nuestra dirección.</p>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="#" id="delivery-btn" class="btn btn-primary" style="display:block; padding: 2rem;">
+                    <h2 style="margin-bottom: 1rem;">Despacho a Domicilio</h2>
+                    <p>Recíbelo en la comodidad de tu casa.</p>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nikkei Roll. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

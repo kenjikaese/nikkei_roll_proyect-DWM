@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Pedidos - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cancelBtn = document.getElementById('cancel-btn-12345');
+
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', function() {
+                    const motivo = prompt("Por favor, ingresa el motivo de la anulación:");
+                    if (motivo !== null) { // Si el usuario no presiona "cancelar" en el prompt
+                        alert('Tu solicitud de anulación ha sido enviada.');
+                        this.textContent = 'Anulación Solicitada';
+                        this.disabled = true;
+                        this.classList.add('btn-disabled');
+                    }
+                });
+            }
+        });
+    </script>
+    
+    <style>
+        .order-card {
+            background: var(--light-gray-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+        }
+        .order-card-disabled {
+            border-left: 5px solid #6c757d;
+        }
+        .btn-disabled {
+            background-color: #6c757d !important;
+            cursor: not-allowed !important;
+            opacity: 0.6 !important;
+        }
+    </style>
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <h1 style="margin-bottom: 2rem;">Mis Pedidos</h1>
+
+        <div class="order-list">
+            <div class="order-card">
+                <div class="row" style="align-items: center;">
+                    <div class="col-md-9">
+                        <h4>Pedido #12345 - Realizado hoy</h4>
+                        <p>Total: $20.480</p>
+                        <p><strong>Estado: En preparación</strong></p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <button id="cancel-btn-12345" class="btn btn-primary">Anular Pedido</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-card order-card-disabled">
+                <div class="row" style="align-items: center;">
+                    <div class="col-md-9">
+                        <h4>Pedido #12327 - Realizado ayer</h4>
+                        <p>Total: $15.800</p>
+                        <p><strong>Estado: Entregado</strong></p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <button class="btn btn-disabled" disabled>Anular Pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nikkei Roll. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

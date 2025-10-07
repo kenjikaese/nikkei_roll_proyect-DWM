@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Carrito - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartContainer = document.querySelector('.cart-view');
+            const emptyCartMessage = document.querySelector('.empty-cart-view');
+            
+            function updateTotals() {
+                const itemRows = document.querySelectorAll('.cart-item-row');
+                let grandTotal = 0;
+
+                if (itemRows.length === 0) {
+                    cartContainer.style.display = 'none';
+                    emptyCartMessage.style.display = 'block';
+                    return;
+                }
+
+                itemRows.forEach(row => {
+                    const price = parseFloat(row.dataset.price);
+                    const quantityInput = row.querySelector('.quantity-input');
+                    const quantity = parseInt(quantityInput.value);
+                    const subtotal = price * quantity;
+
+                    row.querySelector('.subtotal').textContent = '$' + subtotal.toLocaleString('es-CL');
+                    grandTotal += subtotal;
+                });
+                
+                document.getElementById('grand-total').textContent = '$' + grandTotal.toLocaleString('es-CL');
+            }
+
+            document.body.addEventListener('click', function(event) {
+                const target = event.target;
+                const itemRow = target.closest('.cart-item-row');
+
+                if (!itemRow) return;
+
+                const quantityInput = itemRow.querySelector('.quantity-input');
+                let quantity = parseInt(quantityInput.value);
+
+                if (target.classList.contains('quantity-plus')) {
+                    quantityInput.value = quantity + 1;
+                    updateTotals();
+                }
+
+                if (target.classList.contains('quantity-minus')) {
+                    if (quantity > 1) {
+                        quantityInput.value = quantity - 1;
+                        updateTotals();
+                    }
+                }
+
+                if (target.classList.contains('remove-btn')) {
+                    itemRow.remove();
+                    updateTotals();
+                }
+            });
+
+            updateTotals();
+        });
+    </script>
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <h1 class="text-center" style="margin-bottom: 2rem;">Tu Carrito</h1>
+
+        <div class="cart-view">
+            <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #555;">
+                        <th style="padding: 1rem;" colspan="2">Producto</th>
+                        <th style="padding: 1rem;">Precio</th>
+                        <th style="padding: 1rem;">Cantidad</th>
+                        <th style="padding: 1rem;">Subtotal</th>
+                        <th style="padding: 1rem;">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cart-item-row" data-price="8990">
+                        <td style="padding: 1rem;"><img src="assets/images/acebichado-roll.jpg" alt="Acebichado Roll" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;"></td>
+                        <td>Acebichado Roll</td>
+                        <td>$8.990</td>
+                        <td>
+                            <button type="button" class="quantity-minus">-</button>
+                            <input type="number" value="2" class="quantity-input" style="width: 40px; text-align: center; margin: 0 0.5rem;">
+                            <button type="button" class="quantity-plus">+</button>
+                        </td>
+                        <td class="subtotal">$17.980</td>
+                        <td><button type="button" class="remove-btn">Eliminar</button></td>
+                    </tr>
+                    <tr class="cart-item-row" data-price="2500">
+                        <td style="padding: 1rem;"><img src="assets/images/inca-kola.png" alt="Inca Kola" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;"></td>
+                        <td>Inca Kola</td>
+                        <td>$2.500</td>
+                        <td>
+                            <button type="button" class="quantity-minus">-</button>
+                            <input type="number" value="1" class="quantity-input" style="width: 40px; text-align: center; margin: 0 0.5rem;">
+                            <button type="button" class="quantity-plus">+</button>
+                        </td>
+                        <td class="subtotal">$2.500</td>
+                        <td><button type="button" class="remove-btn">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="text-align: right; margin-top: 2rem; font-size: 1.5rem;">
+                <strong>Total: <span id="grand-total">$20.480</span></strong>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-6"><a href="catalogo.html" class="btn" style="background-color: #6c757d; color: white;">Volver al Menú</a></div>
+                <div class="col-md-6"><a href="checkout-entrega.html" class="btn btn-primary">Finalizar Compra</a></div>
+            </div>
+        </div>
+
+        <div class="empty-cart-view text-center" style="display: none; margin-top: 2rem;">
+            <h2>Tu carrito está vacío</h2>
+            <a href="catalogo.html" class="btn btn-primary mt-2">

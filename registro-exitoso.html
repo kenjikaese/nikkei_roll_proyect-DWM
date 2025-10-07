@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisa tu Correo - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginButton = document.getElementById('login-button');
+
+            if (loginButton) {
+                loginButton.addEventListener('click', function() {
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">Nikkei Roll</a>
+            <nav class="main-nav">
+                <a href="catalogo.html">Menú</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        
+        <div class="form-container text-center">
+            <h1 style="margin-bottom: 1.5rem;">¡Casi listo! Revisa tu correo</h1>
+            <p>Te hemos enviado un correo para activar tu cuenta.</p>
+            <p>Por favor, haz clic en el enlace que contiene para poder iniciar sesión.</p>
+            
+            <div style="border-top: 1px solid #444; margin-top: 2rem; padding-top: 2rem;">
+                <p>¿Ya lo validaste?</p>
+                <button id="login-button" class="btn btn-primary mt-1">Ir a Iniciar Sesión</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nikkei Roll. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

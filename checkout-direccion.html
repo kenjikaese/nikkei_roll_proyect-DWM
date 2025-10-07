@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dirección de Despacho - Nikkei Roll</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const displayAddressSection = document.getElementById('display-address-section');
+            const editAddressSection = document.getElementById('edit-address-section');
+            const changeAddressBtn = document.getElementById('change-address-btn');
+            const addressForm = document.getElementById('address-form');
+            const continueBtn = document.getElementById('continue-btn');
+
+            let hasValidAddress = true; // Simula que el usuario empieza con una dirección válida.
+
+            function updateContinueButton() {
+                if (hasValidAddress) {
+                    continueBtn.classList.remove('btn-disabled');
+                    continueBtn.href = 'checkout-pago.html';
+                } else {
+                    continueBtn.classList.add('btn-disabled');
+                    continueBtn.removeAttribute('href');
+                }
+            }
+
+            if (changeAddressBtn) {
+                changeAddressBtn.addEventListener('click', function() {
+                    displayAddressSection.style.display = 'none';
+                    editAddressSection.style.display = 'block';
+                });
+            }
+
+            if (addressForm) {
+                addressForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const newAddress = document.getElementById('address-input').value.toLowerCase();
+                    
+                    if (newAddress.includes('fuera')) { // Simula dirección inválida
+                        if (hasValidAddress) { // Escenario 3
+                            alert('La nueva dirección es inválida, se mantiene la original.');
+                        } else { // Escenario 2
+                            alert('Dirección fuera de nuestra zona. El botón de continuar sigue bloqueado.');
+                        }
+                    } else if (newAddress === '') {
+                        alert('Por favor, ingrese una dirección.');
+                    }
+                    else { // Simula dirección válida
+                        if (hasValidAddress) { // Escenario 4
+                             alert('Dirección actualizada correctamente.');
+                        } else { // Escenario 1
+                            alert('Dirección válida guardada.');
+                            hasValidAddress = true;
+                        }
+                        document.getElementById('current-address-text').textContent = newAddress;
+                        displayAddressSection.style.display = 'block';
+                        editAddressSection.style.display = 'none';
+                    }
+                    updateContinueButton();
+                });
+            }
+
+            updateContinueButton();
+        });
+    </script>
+
+    <style>
+        .btn-disabled {
+            background-color: #6c757d !important;
+            cursor: not-allowed !important;
+            opacity: 0.6 !important;
+        }
+    </style>
+
+</head>
+<body>
+    <header class="main-header">
+        </header>
+
+    <main class="container main-content">
+        <div class="form-container">
+            <h1 class="text-center" style="margin-bottom: 2rem;">Confirma tu Dirección de Despacho</h1>
+
+            <div id="display-address-section">
+                <p>Dirección guardada:</p>
+                <div style="border: 1px solid #555; padding: 1rem; border-radius: 5px; background: #333;">
+                    <p id="current-address-text">Av. Elden ring 490, Maipú</p>
+                </div>
+                <button id="change-address-btn" class="btn mt-1" style="background-color: #6c757d; color: white;">Cambiar dirección</button>
+            </div>
+
+            <div id="edit-address-section" style="display: none;">
+                <form id="address-form">
+                    <div class="form-group">
+                        <label for="address-input">Nueva Dirección:</label>
+                        <input type="text" id="address-input" placeholder="Escribe 'fuera' para simular error">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Validar y Guardar</button>
+                </form>
+            </div>
+
+            <div style="border-top: 1px solid #444; margin-top: 2rem; padding-top: 2rem;">
+                <a href="checkout-pago.html" id="continue-btn" class="btn btn-primary">Continuar al Pago</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        </footer>
+    
+</body>
+</html>

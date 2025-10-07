@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const clientsTableBody = document.querySelector('#clients-table tbody');
+
+            if (clientsTableBody) {
+                clientsTableBody.addEventListener('click', function(event) {
+                    if (event.target.classList.contains('status-toggle')) {
+                        const targetButton = event.target;
+                        const clientRow = targetButton.closest('tr');
+                        const statusCell = clientRow.querySelector('.status');
+                        const clientName = clientRow.querySelector('td').textContent;
+
+                        if (statusCell.textContent === 'Activo') {
+                            statusCell.textContent = 'Inactivo';
+                            targetButton.textContent = 'Habilitar';
+                            alert('La cuenta de ' + clientName + ' ha sido deshabilitada.');
+                        } else {
+                            statusCell.textContent = 'Activo';
+                            targetButton.textContent = 'Deshabilitar';
+                            alert('La cuenta de ' + clientName + ' ha sido habilitada.');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h2>Nikkei Roll</h2>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-pedidos.html">Pedidos</a>
+                <a href="admin-productos.html">Productos</a>
+                <a href="admin-clientes.html" class="active">Clientes</a>
+                <a href="admin-reportes.html">Reportes</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <h1>Gestión de Clientes</h1>
+
+            <table id="clients-table" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Nombre</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Correo Electrónico</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Fecha de Registro</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Estado</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Ana C.</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">ana@example.com</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">03/05/2025</td>
+                        <td class="status" style="border: 1px solid #ddd; padding: 8px;">Activo</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            <button class="status-toggle">Deshabilitar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Juan A.</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">juan@example.com</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">25/06/2025</td>
+                        <td class="status" style="border: 1px solid #ddd; padding: 8px;">Inactivo</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            <button class="status-toggle">Habilitar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

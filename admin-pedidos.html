@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ordersTableBody = document.querySelector('#orders-table tbody');
+
+            if (ordersTableBody) {
+                ordersTableBody.addEventListener('click', function(event) {
+                    const target = event.target;
+                    const orderRow = target.closest('tr');
+                    if (!orderRow) return;
+
+                    const orderId = orderRow.dataset.orderId;
+                    
+                    if (target.classList.contains('print-btn')) {
+                        alert('Simulando impresión para la orden #' + orderId + '...');
+                    }
+
+                    if (target.classList.contains('edit-status-btn')) {
+                        const currentStatusEl = orderRow.querySelector('.status');
+                        const currentStatus = currentStatusEl.textContent;
+                        
+                        const newStatus = prompt(
+                            "Ingrese el nuevo estado para la orden #" + orderId + ":\n\n(Opciones: Nuevo, En preparación, Listo para retiro, En camino, Entregado, Cancelado)",
+                            currentStatus
+                        );
+
+                        if (newStatus) {
+                            currentStatusEl.textContent = newStatus;
+                            alert('Estado de la orden #' + orderId + ' actualizado a "' + newStatus + '".');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h2>Nikkei Roll</h2>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-pedidos.html" class="active">Pedidos</a>
+                <a href="admin-productos.html">Productos</a>
+                <a href="admin-clientes.html">Clientes</a>
+                <a href="admin-reportes.html">Reportes</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <h1>Panel de Gestión de Pedidos</h1>
+
+            <table id="orders-table" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 8px;">N° Orden</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Cliente</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Hora</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Total</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Estado</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="new-order" data-order-id="12345">
+                        <td style="border: 1px solid #ddd; padding: 8px;">#12345</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Ana C.</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">14:30</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">$20.480</td>
+                        <td class="status" style="border: 1px solid #ddd; padding: 8px;">Nuevo</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            <button class="edit-status-btn" title="Actualizar Estado">✏️</button>
+                            <button class="print-btn" title="Imprimir Orden">🖨️</button>
+                        </td>
+                    </tr>
+                    <tr data-order-id="12344">
+                        <td style="border: 1px solid #ddd; padding: 8px;">#12344</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Pedro P.</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">14:25</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">$15.800</td>
+                        <td class="status" style="border: 1px solid #ddd; padding: 8px;">En preparación</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            <button class="edit-status-btn" title="Actualizar Estado">✏️</button>
+                            <button class="print-btn" title="Imprimir Orden">🖨️</button>
+                        </td>
+                    </tr>
+                    <tr data-order-id="12343">
+                        <td style="border: 1px solid #ddd; padding: 8px;">#12343</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Juan A.</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">14:20</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">$20.480</td>
+                        <td class="status" style="border: 1px solid #ddd; padding: 8px;">Entregado</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            <button class="edit-status-btn" title="Actualizar Estado">✏️</button>
+                            <button class="print-btn" title="Imprimir Orden">🖨️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>
